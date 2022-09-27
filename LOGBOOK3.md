@@ -2,8 +2,8 @@
 
 ## Identificação
 
-- webClassifieds (uma aplicação web) é vulnerável a SQL injection
-- Foi possível executar comandos SQL para o script index.php com nos parâmetros do username e da password na sign_in action
+- webClassifieds (uma aplicação web) é vulnerável a SQL Injection
+- Foi possível executar comandos SQL para o script index.php nos parâmetros do username e da password na sign_in action
 - O sistema operativo em questão é irrelevante no que diz respeito a esta vulnerabilidade
 - Relatório original: https://packetstormsecurity.com/files/73461/webClassifieds-2005-Login-Bypass.html
 
