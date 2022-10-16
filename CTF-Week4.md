@@ -1,5 +1,5 @@
 # Web
-* Após procurar informação relevante para o ataque pretendido ao website, encontramos a versão de wordpress e dos plugins instalados
+* Após procurar informação relevante para o ataque pretendido ao website, encontramos a versão de wordpress e dos plugins instalados  
 ![](/images/CTF-Week4-plugins-and-versions.png).
 <br> e ainda dois utilizadores: Admin e Orvald Sanford
 * Depois, procuramos vulnerabilidades nos plugins e no wordpress nas versões usadas. Após isto, encontramos uma vulnerabilidade que permitia autenthication bypass na versão 5.4.3 do Booster for WooCommerce (CVE-2021-34646)
