@@ -27,3 +27,21 @@ Neste caso, basta preencher o buffer até ao limite, seguido do valor que valida
 Há que ter apenas em consideração que, como os inteiros são guardados em "little endian", a ordem como colocamos o valor para a comparação no script seria a inversa ao esperado (0xfefc2223), como se testemunha pelo seguinte código.
 
 ![img](images/ctf5_b.png)
+
+# Extra
+
+## British Punctuality
+
+- Primeiro lendo o código no main.c, descobrimos que a flag estava escrita no ficheiro /flags/flag.txt
+![codigo main](/images/w5/extra_1.png) 
+- Depois, reparámos que o script my_script.sh, exportava as variáveis de ambiente que estivessem no ficheiro /tmp/env, executava o comnado printenv e depois o programa reader.
+![codigo my_script.sh](/images/w5/extra_2.png) 
+- Criamos um printenv na pasta /tmp/, com cat /flags/flag.txt, e demos lhe permissões de execução.
+- Então criamos o ficheiro env e escrevemos "PATH=/tmp/:$PATH"
+![env and printenv](/images/w5/extra_3.png) 
+- Depois executamos o script e vimos que não tinhamos permissões para ler a flag
+- Reparámos que havia um script no "/etc/cron.d/", que executava o script "/home/flag_reader/my_script.sh" como flag_reader (a cada minuto), portanto tinha permissões para ler a flag.
+![cron](/images/w5/extra_4.png) 
+- Esperamos que o script executasse e lê-mos a flag do last_log .
+![flag](/images/w5/extra_5.png) 
+
