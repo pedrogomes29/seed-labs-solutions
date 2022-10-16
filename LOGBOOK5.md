@@ -13,4 +13,12 @@
 
 ## Task 3
 
-- 
+- Nesta tarefa, o importante seria descobrir o offset entre a posição inicial do buffer e o local onde é guardado o endereço de retorno.
+- Com o gdb, ao realizarmos debugging obtivemos os endereços do ebp e do buffer, cuja distância é de 108 bytes. O endereço de retorno encontra-se imediatamente a seguir ao ebp, pelo que será preciso considerar uns extra 4 bytes; ao todo, um offset de 112.
+- Ao correr o programa com o gdb, há variáveis adicionais na stack e, portanto, o endereço que obtivemos do frame pointer terá um desfasamento ligeiro em relação a quando se corre o executável por si no terminal (o executável tem um valor superior).
+- Com isto, a shell code é escrita o mais longe possível da stack e o endereço de retorno é, do mesmo modo, bastante maior, para serem maiores as chances de esta calhar na zona dos NOPs.
+- Ao explorar esta vulnerabilidade foi possível correr uma shell de owner root.
+
+![img](images/5_3_a.png)
+![img](images/5_3_c.png)
+![img](images/5_3_d.png)
