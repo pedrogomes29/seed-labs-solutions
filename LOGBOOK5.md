@@ -59,8 +59,8 @@ Há que ter apenas em consideração que, como os inteiros são guardados em "li
 
 - Primeiro lendo o código no main.c, descobrimos que a flag estava escrita no ficheiro /flags/flag.txt
 ![codigo main](/images/w5/extra_1.png) 
-- Depois, reparámos que o script my_script.sh, exportava as variáveis de ambiente que estivessem no ficheiro /tmp/env, executava o comnado printenv e depois o programa reader.
-![codigo my_script](/images/w5/extra_2.png) 
+- Depois, reparámos que o script my_script.sh, exportava as variáveis de ambiente que estivessem no ficheiro /tmp/env, executava o comnado printenv e depois o programa reader.<br/>
+![codigo my_script.sh](/images/w5/extra_2.png) 
 - Criamos um printenv na pasta /tmp/, com cat /flags/flag.txt, e demos lhe permissões de execução.
 - Então criamos o ficheiro env e escrevemos "PATH=/tmp/:$PATH"
 ![env and printenv](/images/w5/extra_3.png) 
