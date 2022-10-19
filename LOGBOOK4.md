@@ -44,10 +44,12 @@
 ## Task 5
 
 ![img](images/2_5.png)
+![img](images/2_5b.png)
 
 - Um programa SET-UID assume os privilégios do seu owner, pelo que se o owner for root, o programa ganharia os privilégios associados
 - Os comportamentos deste tipo de programas são determinados pela sua lógica, não pelo user, mas o user pode-se aproveitar das variáveis de ambiente para afetar o programa
 - Ao testar o programa, verifica-se que o user pode definir uma variável de ambiente e confirmar que esta foi passada aquando da execução do programa SET-UID (esta surge no output)
+- Apesar de quase todas as variáveis de ambiente declaradas pelo user serem passadas para o programa, o mesmo não acontece com a LD_LIBRARY_PATH. Isto é uma medida de proteção para utilizadores maliciosos não conseguirem alterar quais as bibliotecas que são importadas (de forma a importar as suas em vez das esperadas) 
 
 ## Task 6
 
