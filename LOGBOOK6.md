@@ -10,7 +10,7 @@
 
 ![crash](images/w6/1_b.png)
 
-- Isso acontece uma vez que o printf vai tentar escrever o texto e não foi dada nenhum ponteiro válido para ele ler.
+- Isso acontece uma vez que o printf assume que tem como parâmetro um endereço de memória para o endereço base de uma string. No entanto, nenhum parâmetro é passado à função printf e, como tal, é lido um endereço fora do espaço virtual do processo, o que causa que o programa crashe.
 
 ## Task 2  
 
