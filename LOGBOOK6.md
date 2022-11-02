@@ -63,6 +63,8 @@ Conseguimos, através desta vulnerabilidade, ler a informação de qualquer posi
 - Recorrendo à adição de vários %x, fomos procurando o conteúdo pretendido; apercebemo-nos que a input string se localizava logo no início. Tendo isso em conta, escrevemos o endereço do buffer da flag acompanhado de um %s, imprimindo a flag no stdout.  
 
 ![img](images/ctf7_c.png)  
+![img](images/ctf7_d.png)  
+![img](images/ctf7_e.png)  
 
 * Semana 7 - Desafio 2
 
@@ -73,5 +75,5 @@ A flag é carregada para memória? Ou existe alguma funcionalidade que podemos u
 
 Para desbloqueares essa funcionalidade o que é que tens de fazer?
 
-![img](images/ctf7_d.png)
+![img](images/ctf7_f.png)
 
