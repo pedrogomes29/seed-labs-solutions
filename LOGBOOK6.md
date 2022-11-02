@@ -41,3 +41,37 @@
 ![input](images/w6/3_b_1.png)
 - O resultado é verificável pelo output do servidor
 ![output](images/w6/3_b_2.png)
+
+# CTF-Week7: pwn
+
+* Semana 7 - Desafio 1
+
+- Correndo o checksec, inferimos que são as várias as proteções ativas de relevo no nosso contexto, nomeadamente, as de Partial RELRO e NX (não se pode injetar código na stack e executá-lo) e Canary (dificulta a operação de buffer overflow). Por outro lado, verifica-se "No PIE", o que significa que não é efetuada a randomization de endereços de memória.
+
+Qual é a linha do código onde a vulnerabilidade se encontra?
+![img](images/ctf7_a.png)  
+
+O que é que a vulnerabilidade permite fazer?  
+Permite, através do uso de caracteres como %x, %s e %n, ver e alterar a memória do programa em questão.
+
+Qual é a funcionalidade que te permite obter a flag?  
+Conseguimos, através desta vulnerabilidade, ler a informação de qualquer posição de memória.  
+
+![img](images/ctf7_b.png)  
+
+- Tirando proveito do gdb, identificamos o endereço correspondente à flag, de modo a expôr posteriormente o conteúdo lá presente.  
+- Recorrendo à adição de vários %x, fomos procurando o conteúdo pretendido; apercebemo-nos que a input string se localizava logo no início. Tendo isso em conta, escrevemos o endereço do buffer da flag acompanhado de um %s, imprimindo a flag no stdout.  
+
+![img](images/ctf7_c.png)  
+
+* Semana 7 - Desafio 2
+
+Qual é a linha do código onde a vulnerabilidade se encontra? E o que é que a vulnerabilidade permite fazer?
+
+
+A flag é carregada para memória? Ou existe alguma funcionalidade que podemos utilizar para ter acesso à mesma?  
+
+Para desbloqueares essa funcionalidade o que é que tens de fazer?
+
+![img](images/ctf7_d.png)
+
