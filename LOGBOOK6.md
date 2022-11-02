@@ -16,17 +16,16 @@
 
 ### 2.A
 
-- 
-
+- Por tentativa erro, fomos adicionando %x até ao output conter no seu final "41414141" que corresponde a 4 'A's representados em ASCII, em hexadecimal. Concluimos que são necessário 64 %x.
 ![input](images/w6/2_a_1.png)
-Por tentativa erro, fomos adicionando %x até ao output conter no seu final "41414141" que corresponde a 4 'A's representados em ASCII, em hexadecimal. Concluimos que são necessário 64 %x.
-![input](images/w6/2_a_2.png)
+![output](images/w6/2_a_2.png)
 
 ### 2.B 
 
-- 
+- Sabendo que é necessário um offset de 63 '%x' para chegar ao início do nosso input, se no início colocarmos um endereço de memória e depois dos 63 '%x' colocarmos um '%s', a string vai ser lida do endereço que está no início do nosso input e, assim, o output vai ser a string nesse endereço. Assim, basta colocar o endereço fornecido pelo servidor no início do input, seguido de 63 '%x' e de um '%s' (como foi feito no script python)
 
-![img]()
+![input](images/w6/2_b_1.png)
+![output](images/w6/2_b_2.png)
 
 ## Task 3
 
