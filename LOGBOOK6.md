@@ -18,7 +18,9 @@
 
 - 
 
-![img]()
+![input](images/w6/2_a_1.png)
+Por tentativa erro, fomos adicionando %x até ao output conter no seu final "41414141" que corresponde a 4 'A's representados em ASCII, em hexadecimal. Concluimos que são necessário 64 %x.
+![input](images/w6/2_a_2.png)
 
 ### 2.B 
 
