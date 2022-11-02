@@ -28,7 +28,16 @@
 ![output](images/w6/2_b_2.png)
 
 ## Task 3
+### 3.A
 
-- 
+- Desta vez, queremos que o endereço lido para o '%n' seja o endereço no início do nosso input, correspondente ao endereço da variável target fornecido pelo servidor. Para isso, necessitamos de colocar esse mesmo endereço, seguido de 63 '%x' e, por fim, um '%n', como foi feito no script de python.
+![input](images/w6/3_a_1.png)
+- Já que o '%n' corresponde a guardar na variável dada como parâmetro (neste caso, o target) o número de caratérs escritos até esse instante, esse mesmo número (0xEE) é guardado no target. Isto é verificável pelo output do servidor.
+![output](images/w6/3_a_2.png)
 
-![img]()
+### 3.B 
+
+- Sabendo que na alínea a deste mesmo exercício foram lidos 238 caratérs (0xEE), então é necessário escrever mais 20242(0x5000-0xEE) caratérs antes do '%n'. Para tal, após o endereço do target, em vez de adicionarmos os 63 '%x' adicionamos 62 '%x' sem quaisquer alterações e um '20244%x' (20242 + os dois caratérs que o último '%x' escrevia), seguido do '%n', como foi feito no script python.
+![input](images/w6/3_b_1.png)
+- O resultado é verificável pelo output do servidor
+![output](images/w6/3_b_2.png)
