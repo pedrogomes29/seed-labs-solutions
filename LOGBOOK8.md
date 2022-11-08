@@ -24,6 +24,7 @@
 
 - Recorremos à mesma estratégia usada na alínea anterior.
 - O comando executado foi: curl 'www.seed-server.com/unsafe_home.php?username=admin%27%3B%23&Password='.
+- Verifica-se, pela seguinte imagem, que foi obtida a informação dos funcionários.
 
 ![img](images/w8/task2_2.png)
 
