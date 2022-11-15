@@ -28,7 +28,14 @@
 
 ![img](images/w8/task2_2.png)
 
+### 2.3 
+
+- Existe, de facto, uma medida que impede a execução de 2 comandos SQL em um ataque. Para se executar vários comandos SQL (agrupados), o comando multi_querie() precisa de estar presente.
+- As funções de querie, por norma, não ativam uma flag de conexão necessária para ativar multi queries no servidor. 
+
 ## Task 3
+
+### 3.1
 
 - 
 
