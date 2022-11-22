@@ -37,6 +37,48 @@
 
 ### 3.1
 
-- 
+- Analsiando o código PHP em unsafe_edit_backend.php, não há novamente qualquer proteçao contra sqli, sendo possível inserir código SQL nas variáveis do formulário.
+![vulnerable_code](images/w8/task3_1.png)
+- Assim, se colocarmos ',salary=1000000 WHERE name='Alice';# no nickname
+![alice_salary_form](images/w8/task3_2.png)
+- O código executado será 
+```sql
+UPDATE credential SET
+nickname='',salary=1000000 WHERE name='Alice';#’...
+```
+Como tal, o salário é alterado e o código restante é comentado.
+![alice_salary](images/w8/task3_3.png)
 
-![img]()
+### 3.2
+- Para alterar o salário de oura pessoa, basta mudar o nome 'Alice' filtrado com o where para o da pessoa que se pretende mudar o salário. 
+- Assim, passamos a colocar ',salary=1 WHERE name='Boby';#
+
+![boby_salary_form](images/w8/task3_4.png)
+- O código executado será 
+```sql
+UPDATE credential SET
+nickname='',salary=1 WHERE name='Boby';#’...
+```
+![boby_salary](images/w8/task3_5.png)
+
+### 3.3
+- É guardada o hash do input da password. Como tal, não se pode colocar código neste parâmetro.
+- No entanto, dado que o número de telemóvel aparece depois da password, se colocarmos a password desejada no parâmetro password e injetarmos código sql no número de telemóvel de forma a mudar o filtro para escolher o utilizador que é alterado, conseguimos o desejado.
+- Para isto, colocamos 'WHERE name='Boby';# no número de telemóvel.
+![boby_password](images/w8/task3_6.png)
+- Assim, o código executádo será
+
+```sql
+UPDATE credential SET
+nickname='',
+email='',
+address='',
+Password=sha1($input_pwd);,
+PhoneNumber=''WHERE name='Boby';#'WHERE ID=$id;
+```
+- Como tal, a password do Boby é alterada para a fornecida no parâmetro password.
+
+- Conseguimos então fazer login na conta do Boby com o seu username conhecido e a password que escolhemos.
+
+![boby_login](images/w8/task3_7.png)
+![boby_after_login](images/w8/task3_8.png)
