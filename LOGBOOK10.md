@@ -32,10 +32,13 @@
 
 - Nesta tarefa, pretendemos que quem visite o perfil do user Samy adicione-o como amigo automaticamente.
 - Para isso, podemos colocar um script na secção About me do perfil do Samy (em Text mode).
-- 
 
 ![img](images/w9/4a.png)
 
 ![img](images/w9/4b.png)
+
+- Conseguimos assim criar e enviar um request Ajax, aproveitando-nos da informação no campo de action no form relativo à adição como amigo de um user.
+- **Resposta à questão 1:** 
+- **Resposta à questão 2:** Sim, seria possível executar um ataque bem sucedido; bastaria alterar o código HTML, adaptando-o de modo a permitir aquilo que pretendemos.
 
 ![img](images/w9/4c.png)
