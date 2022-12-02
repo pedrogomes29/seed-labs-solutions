@@ -39,7 +39,7 @@
 
 - Conseguimos assim criar e enviar um request Ajax, aproveitando-nos da informação no campo de action no form relativo à adição como amigo de um user.
 - **Resposta à questão 1:** De modo a prevenir ataques de request forgery, qualquer action que se pretenda fazer na plataforma em questão requere a passagem de um CSRF token. Neste caso, a linha 1 contém informação de uma timestamp atual e, por sua vez, a linha 2 contém o token gerado a partir desse timestamp. Assim, para que a action seja permitida, temos de recolher os dados do token (linhas 1 e 2) (por exemplo, usando JavaScript), sendo que essa proteção não irá impedir o nosso script de executar e fazer o pretendido.
-- **Resposta à questão 2:** Sim, seria possível executar um ataque bem sucedido; bastaria alterar o código HTML, adaptando-o de modo a permitir aquilo que pretendemos.
+- **Resposta à questão 2:** Sim, seria possível executar um ataque bem sucedido; bastaria em vez de escrever o código diretamente na caixa de texto, escrever por exemplo com ajuda do "inspecionar elemento", e assim ele já não codifica os caracteres especiais necessário para escrever o script.
 
 ![img](images/w9/4c.png)
 
