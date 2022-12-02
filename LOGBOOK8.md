@@ -87,7 +87,20 @@ PhoneNumber=''WHERE name='Boby';#'WHERE ID=$id;
 
 ## Semanas 8 e 9 - Desafio 1
 
-- 
+- A aplicação web pode ter, como vulnerabilidade, uma verificação inexistente ou indevida dos campos de input. A recolha dos dados aí submetidos pode ser um processo perigoso.
+- Para fazer bypass ao login sem conhecer as credenciais, um tipo de ataque que pode ser executado é o de SQL Injection, isto caso a aplicação web em questão não tenha as devidas proteções (por exemplo, o uso de prepared statements).
+
+- Como visível nesse excerto de código, há uma vulnerabilidade no modo como recolhem os dados e executam a querie, sendo possível manipulá-la, definindo de modo vantajoso as variáveis recolhidas no método POST.
+
+![img](images/w8/desafio1_c.png)
+
+- Deste modo, preenchemos o campo de username como mostra a seguinte imagem.
+
+![img](images/w8/desafio1_a.png)
+
+- Com isto, apenas é verificado se o nome (admin) é aprovado, escapando-se à verificação da password (código SQL respetivo ficou comentado), sendo posteriormente revelada a flag.
+
+![img](images/w8/desafio1_b.png)
 
 ## Semana 8 e 9 - Desafio 2
 Após correr o checksec, verificamos que as permissões do programa são as seguintes
