@@ -82,3 +82,19 @@ PhoneNumber=''WHERE name='Boby';#'WHERE ID=$id;
 
 ![boby_login](images/w8/task3_7.png)
 ![boby_after_login](images/w8/task3_8.png)
+
+# Desafios CTF
+
+## Semanas 8 e 9 - Desafio 1
+
+- 
+
+## Semanas 8 e 9 - Desafio 2
+
+- Ao correr o comando checksec, verifica-se que o estado das proteções é o seguinte:
+
+![img]() 
+
+- Qual é a linha do código onde a vulnerabilidade se encontra?
+
+- O que é que a vulnerabilidade permite fazer?
