@@ -89,12 +89,33 @@ PhoneNumber=''WHERE name='Boby';#'WHERE ID=$id;
 
 - 
 
-## Semanas 8 e 9 - Desafio 2
+## Semana 8 e 9 - Desafio 2
+Após correr o checksec, verificamos que as permissões do programa são as seguintes
 
-- Ao correr o comando checksec, verifica-se que o estado das proteções é o seguinte:
+![checksec](images/w8/desafio2_a.png)
 
-![img]() 
+Já que o PIE está ativado, os endereços de memória vão ser diferentes em cada execução do programa.
+No entanto, os canários estão desativados o que permite dar overwrite ao return address, o NX está desativado e existem segmentos RWX o que permite injetar código na stack e o RELRO está desativado, não havendo proteção em relação a overwrites na Global Offset Table.
 
-- Qual é a linha do código onde a vulnerabilidade se encontra?
+#### Qual é a linha do código onde a vulnerabilidade se encontra?
+- Existe uma leitura do input do utilizador para um buffer de 100 bytes sem qualquer verificação do tamanho desse input. Além disso, é mostrado ao utilizador em run-time o endereço de memória do buffer ao qual está a dar overflow.
 
-- O que é que a vulnerabilidade permite fazer?
+![vulnerabilidade](images/w8/desafio2_b.png)
+
+#### O que é que a vulnerabilidade permite fazer?
+- Permite realizar um buffer overflow em que é conhecido o endereço do buffer e, como tal, é possível injetar shell code e substituir o endereço de retorno pelo endereço onde é colocado o shell code.
+
+Utilizando o gdb, calculamos o offset entre o endereço do buffer e o stack pointer (ou seja, o endereço de retorno). Este offset é 108. 
+
+![gdb](images/w8/desafio2_d.png)
+
+Começamos por obter o endereço do buffer a partir do output do servidor.
+De seguida, calculamos o endereço do return address (utilizando o offset obtido com o gdb) e do shell code (um endereço um pouco acima (em memória) do topo da stack frame do programa). Além disso, injetamos o shell code no endereço que calculamos e substiuímos o return address (cujo endereço já calculamos) pelo endereço do shell code injetado.
+
+![python](images/w8/desafio2_c.png)
+
+Quando o programa retorna executa o nosso shell code e obtemos uma shell, onde conseguimos fazer cat da flag.
+
+![flag](images/w8/desafio2_e.png)
+
+
