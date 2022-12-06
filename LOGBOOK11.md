@@ -28,7 +28,11 @@
 
 - Aqui se segue o comando criado para gerar um CSR para o server especificado, juntamente com a opção adicional, adicionando-se dois nomes alternativos ao CSR.
 
-![img](images/w12/2.png)
+```
+openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -passout pass:dees -addext "subjectAltName = DNS:www.bank32.com, \
+DNS:www.bank32A.com, \
+DNS:www.bank32B.com"
+```
 
 ## Task 3  
 
