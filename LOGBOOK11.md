@@ -26,9 +26,9 @@
 
 ## Task 2  
 
-- 
+- Aqui se segue o comando criado para gerar um CSR para o server especificado, juntamente com a opção adicional, adicionando-se dois nomes alternativos ao CSR.
 
-![img]()
+![img](images/w12/2.png)
 
 ## Task 3  
 
