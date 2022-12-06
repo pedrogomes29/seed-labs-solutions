@@ -12,16 +12,16 @@
 
 - No algoritmo RSA, temos um expoente público e, um expoente privado d, um módulo n, e dois números secretos p e q, tal que n = pq. Identifica os valores para estes elementos no teu certificado e ficheiros chave.
 
-**módulo n:**
+**módulo n:**  
 ![img](images/w12/1_c.png)
 
-**expoente público e:**
+**expoente público e:**  
 ![img](images/w12/1_d.png)
 
-**expoente privado d:**
+**expoente privado d:**  
 ![img](images/w12/1_e.png)
 
-**números secretos p e q:**
+**números secretos p e q:**  
 ![img](images/w12/1_f.png)
 
 ## Task 2  
