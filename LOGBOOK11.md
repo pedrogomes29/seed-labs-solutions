@@ -32,9 +32,11 @@
 
 ## Task 3  
 
-- 
+- Após assinar o certificado e executar o comando proposto que dá print ao conteúdo decodificado do certificado, podemos verificar que os nomes alternativos estão, de facto, incluídos.
 
-![img]()
+![img](images/w12/3_a.png)
+
+![img](images/w12/3_b.png)
 
 ## Task 4  
 
