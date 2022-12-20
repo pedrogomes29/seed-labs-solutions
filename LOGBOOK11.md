@@ -42,7 +42,21 @@
 
 - 
 
-![img]()
+![img](images/w12/4a.png)
+
+![img](images/w12/4b.png)
+
+![img](images/w12/4c.png)
+
+![img](images/w12/4d.png)
+
+![img](images/w12/4e.png)
+
+![img](images/w12/4f.png)
+
+![img](images/w12/4g.png)
+
+![img](images/w12/4h.png)
 
 ## Task 5  
 
