@@ -42,10 +42,6 @@
 
 - 
 
-![img](images/w12/4a.png)
-
-![img](images/w12/4b.png)
-
 ![img](images/w12/4c.png)
 
 ![img](images/w12/4d.png)
@@ -58,17 +54,33 @@
 
 ![img](images/w12/4h.png)
 
+![img](images/w12/4a.png)
+
+![img](images/w12/4b.png)
+
 ## Task 5  
 
 - 
 
-![img]()
+![img](images/w12/5a.png)
+
+![img](images/w12/5b.png)
+
+![img](images/w12/5c.png)
+
+![img](images/w12/5d.png)
 
 ## Task 6  
 
 - 
 
-![img]()
+![img](images/w12/6a.png)
+
+![img](images/w12/6b.png)
+
+![img](images/w12/6c.png)
+
+![img](images/w12/6d.png)
 
 # CTF
 
