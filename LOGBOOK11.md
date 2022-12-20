@@ -26,7 +26,7 @@
 
 ## Task 2  
 
-- Aqui se segue o comando criado para gerar um CSR para o server especificado, juntamente com a opção adicional, adicionando-se dois nomes alternativos ao CSR.
+- Aqui se segue o comando criado para gerar um CSR (certificate signing request) para o server especificado, juntamente com a opção adicional, adicionando-se dois nomes alternativos ao CSR.
 
 ![img](images/w12/2.png)
 
@@ -56,9 +56,7 @@
 
 ![img](images/w12/4h.png)
 
-- Estando tudo configurado como pretendido, adicionou-se então manualmente o certificado no browser Firefox, sendo possível aceder a www.bank32.com em https, como é possível verificar.
-
-![img](images/w12/4b.png)
+- Estando tudo configurado como pretendido, ainda não é possível aceder a www.bank32.com utilizando https, isto acontece pois a CA que assinou o certificado que o site utiliza não é de confiança. Adicionamos então manualmente o certificado no browser Firefox, sendo possível aceder a www.bank32.com em https, como é possível verificar.
 
 ![img](images/w12/4a.png)
 
@@ -71,7 +69,7 @@
 ![img](images/w12/5a.png)
 
 - De seguida, alteramos o ficheiro etc/hosts, mapeando www.example.com para o nosso servidor.
-- Por fim, ao usar o browser, acedendo a www.example.com (em https), surge, tal como esperado, um aviso indicando que o certificado usado não é válido.
+- Por fim, ao usar o browser, acedendo a www.example.com (em https), surge, tal como esperado, um aviso indicando que o certificado usado não é válido, já que é para outro domain. Isto seria de esperar já que o certificado que estamos para usar é para o domain www.bank32.com e não para o www.example.com.
 
 ![img](images/w12/5c.png)
 
@@ -84,7 +82,7 @@
 
 ![img](images/w12/6b.png)
 
-- De seguida, convertemos o CSR (example.csr) num certificado X509 (example.crt), através do ca.crt e do ca.key.
+- De seguida, utilizamos o CSR (example.csr) para criar o certificado (example.crt), através do ca.crt e do ca.key.
 
 ![img](images/w12/6c.png)
 
