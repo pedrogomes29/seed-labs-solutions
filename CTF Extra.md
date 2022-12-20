@@ -104,7 +104,7 @@ Uma forma de contornar isso é criar um form, e submetê-lo.
 
 
 ## NumberStation3
-Observando o código fornecido, apesar da chave gerada ter 256 bits, de facto só existem 2^16 chaves possíveis, já que é feito um bitwise & com 1 para cada byte, ou seja, cada byte dos 16 que constituem a chave ou são iguais a 0 ou iguais a 1. 
+Observando o código fornecido, apesar da chave gerada ter 256 bits, de facto só existem 2^16 chaves possíveis, já que é feito um bitwise & com 1 para cada byte, ou seja, cada byte dos 16 que constituem a chave ou é igual a 0 ou é igual a 1. 
 ![img](images/extras/numberstation3_b.png)
 
 Como tal, é possível testar todas as chaves possíveis (65536) em tempo útil e, para cada uma destas, tentar decifrar o criptograma. Uma destas será a chave verdadeira e o resultado será a mensagem original, ou seja, a flag
