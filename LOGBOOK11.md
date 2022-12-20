@@ -40,31 +40,38 @@
 
 ## Task 4  
 
-- 
+- Usando os ficheiros gerados do certificado e da key, podemos então passá-los para a pasta volumes (partilhada).
 
 ![img](images/w12/4c.png)
 
 ![img](images/w12/4d.png)
 
+- Na pasta demoCA, temos os ficheiros index.txt e serial, tal como foi especificado.
+
 ![img](images/w12/4e.png)
 
-![img](images/w12/4f.png)
+- Já no container, basta passar os dois ficheiros, já com os nomes alterados de modo a coincidir com o especificado na entrada da configuração do Apache (bank32.crt e bank32.key), da pasta volumes para a pasta certs.
 
 ![img](images/w12/4g.png)
 
 ![img](images/w12/4h.png)
 
-![img](images/w12/4a.png)
+- Estando tudo configurado como pretendido, adicionou-se então manualmente o certificado no browser Firefox, sendo possível aceder a www.bank32.com em https, como é possível verificar.
 
 ![img](images/w12/4b.png)
 
+![img](images/w12/4a.png)
+
 ## Task 5  
 
-- 
+- Tal como pretendido, adicionamos uma entrada ao ficheiro de configuração do Apache, com o ServerName como www.example.com mas reaproveitando as configurações anteriores.
+
+![img](images/w12/5b.png)
 
 ![img](images/w12/5a.png)
 
-![img](images/w12/5b.png)
+- De seguida, alteramos o ficheiro etc/hosts, mapeando www.example.com para o nosso servidor.
+- Por fim, ao usar o browser, acedendo a www.example.com (em https), surge, tal como esperado, um aviso indicando que o certificado usado não é válido.
 
 ![img](images/w12/5c.png)
 
@@ -72,13 +79,20 @@
 
 ## Task 6  
 
-- 
-
-![img](images/w12/6a.png)
+- Pretendemos gerar um certificado neste contexto para que o ataque MITM seja bem sucedido.
+- Começamos por gerar um CSR para www.example.com.
 
 ![img](images/w12/6b.png)
 
+- De seguida, convertemos o CSR (example.csr) num certificado X509 (example.crt), através do ca.crt e do ca.key.
+
 ![img](images/w12/6c.png)
+
+- Na entrada da configuração do Apache cujo ServerName é www.example.com, atribuímos os ficheiros do certificado e da key aos ficheiros há pouco gerados.
+
+![img](images/w12/6a.png)
+
+- Por fim, como se pode verificar, conseguimos aceder a www.example.com (em https) no browser, sem nenhum erro (certificado assumido).
 
 ![img](images/w12/6d.png)
 
