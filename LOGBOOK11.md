@@ -107,7 +107,7 @@ Utilizando este valor, basta utilizar a função dec fornecida para descodificar
 ![img](images/w12/desafio1_a.png)
 
 ## Semanas #12 e #13 - Desafio 2
-- Após alguma pesquisa, descobrimos (em https://infosecwriteups.com/rsa-attacks-common-modulus-7bdb34f331a5) que quando a mesma mensagem é cifrada duas vezes com os mesmos números primos p e q mas dois e's diferentes, é possível recuperar a mensagem original se tivermos acesso aos dois criptogramas resultantes, ao n e aos dois e's (todos fornecidos neste desafio), utilizando o teorema de Bezout.
+- Após alguma pesquisa, descobrimos que quando a mesma mensagem é cifrada duas vezes com os mesmos números primos p e q mas dois e's diferentes, é possível recuperar a mensagem original se tivermos acesso aos dois criptogramas resultantes, ao n e aos dois e's (todos fornecidos neste desafio), utilizando o teorema de Bezout.
 - Para isto, basta descobrir dois números a e b, utilizando o teorema de Bezout, tal que a * e1 + y * e2 = 1, em que e1 e e2 são os dois e's utilizados na encriptação.
 - Após isto, é possível provar que, módulo n:
 - c1^a * c2^b = M, em que c1 corresponde ao criptograma 1, c2 corresponde ao criptograma 2 e M corresponde à mensagem original.
