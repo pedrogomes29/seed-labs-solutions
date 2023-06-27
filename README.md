@@ -1,5 +1,4 @@
-Breve descrição do grupo
-
+Soluções de alguns dos [Seed labs](https://github.com/seed-labs/seed-labs) desenvolvidas no âmbito da unidade curricular Fundamentos de Segurança Informática.
 * Turno: 3LEIC03
 * Grupo: L03G05
 * Alunos:
